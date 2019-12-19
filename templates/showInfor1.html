@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Trang đăng kí thông tin</title>
+
+    <!-- Icons font CSS-->
+    <link href="static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="static/css/main.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Quản lý định danh số</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="   #navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto ml-5">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Tra cứu thông tin công dân</a>
+                </li>
+                <li class="nav-item ml-3">
+                    <a class="nav-link" href="#">Tạo mới  thông tin công dân</a>
+                </li>
+                <li class="nav-item ml-3">
+                    <a class="nav-link" href="#">Tiểu sử công dân</a>
+                </li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+                <li class="nav-item">
+                    <a href="#" class="btn btn-warning text-white" style="background-color: #fc9807">{{ session['username'] }}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ logout }}" class="btn btn-outline-success">Đăng xuất</a>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Tra cứu thông tin công dân</h2>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <h4>Mời nhập số cmt</h4>
+                                <input type="text" name="" class="" placeholder="Số cmt" id="cmt">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn-primary" style="width: 130px; height: 35px">Tra cứu</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="input-group">
+                        <h4>Kết quả</h4>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Số cmt</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Họ và tên</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Tên thường gọi</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Ảnh đại diện</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày sinh</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày tháng năm mất</td>
+                                    <td></td>
+                                </tr>             
+                                <tr>
+                                    <td>Giới tính</td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Quốc tịch</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Dân tộc</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Quê quán</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Nơi thường trú</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Nơi ở hiện tại</td>
+                                    <td></td>
+                                </tr>                                
+                                <tr>
+                                    <td>Nhóm máu</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Số hộ chiếu</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên cha</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên mẹ</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Tình trạng hôn nhân</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên vợ/chồng</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên con</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="static/vendor/select2/select2.min.js"></script>
+    <script src="static/vendor/datepicker/moment.min.js"></script>
+    <script src="static/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="static/js/global.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="static/login/logincss.css">
+  </head>
+  <body>
+<div class="login-box">
+  <h1>Đăng Nhập</h1>
+    <div style="clear: both;"></div>
+    {% if error %}
+    <div style="font-weight: bold; color: red; font-size: 16px">
+    Tài khoản hoặc mật khẩu không chính xác.
+    </div>
+    {% endif %}
+    <form method="post" action="index">
+  <div class="textbox">
+    <i class="fas fa-user"></i>
+    <input name="tai-khoan" type="text" placeholder="Tài khoản">
+  </div>
+
+  <div class="textbox">
+    <i class="fas fa-lock"></i>
+    <input name="mat-khau" type="password" placeholder="Mật khẩu">
+  </div>
+
+  <input name="button-dang-nhap" type="submit" class="btn" value="Đăng nhập">
+    </form>
+</div>
+  </body>
+</html>

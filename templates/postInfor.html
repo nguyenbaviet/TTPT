@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script class="jsbin" src="static/jquery-3.4.1.min.js"></script>
+        <style type="text/css">
+        .dangki {
+            margin-right: 10%;
+    float: right;
+    text-align: right;
+    font-size: 17px;
+    padding: 14px 16px;
+    color: white;
+                }
+        .dangnhap {
+  float: right;
+  text-align: right;
+  font-size: 17px;
+  padding: 14px 16px;
+  color: white;
+
+            }
+        .nav {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+}
+        .nav a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    background-color: #585858;
+    color: black;
+}
+ .nav a.tracuu {
+     margin-left: 10%;
+    float: left;
+    color: white;
+}
+.nav a.quanly {
+    float: left;
+    color: white;
+}
+.nav a.nhapthongtin {
+    float: left;
+    color: white;
+}
+        </style>
+
+    <!-- Title Page-->
+    <title>Tạo mới thông tin</title>
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="static/css/main.css" rel="stylesheet" media="all">
+</head>
+<div class="nav">
+            <a class="tracuu" href="{{url_for('getInfor')}}">Tra cứu </a>
+            <a class="nhapthongtin" href="{{ url_for('getPostInfor') }}">Tạo mới </a>
+            <a class="quanly" href="{{ url_for('getHistory') }}">Tiểu sử công dân </a>
+            <a href="{{ url_for('logout') }}" class="dangki">Đăng xuất</a>
+    <a href="#" style="background-color: #fc9807;float: right">{{ session['username'] }}</a>
+
+</div>
+<body>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Tạo mới thông tin</h2>
+                    <form method="POST" action="postInfor" enctype="multipart/form-data">
+
+                        <div class="col-2">
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="Họ và tên" name="name" required>
+                        </div>
+                        </div>
+
+                        <div class="col-2">
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="Tên thường gọi" name="nickname" required>
+                        </div>
+                        </div>
+
+                        <div class="col-2">
+                        <div class="input-group">
+                            <input class="input--style-1" type="numbers" value="{{ id }}" name="cmt" disabled>
+                        </div>
+                        </div>
+
+                        <div class="row row-space">
+                        <div class="col-2">
+                            <label>Ngày Sinh</label>
+                            <div class="input-group">
+                                <input type="date" id="date1"
+                                   min="1900-01-01" max="2050-12-31" value="2000-01-01"
+								 name="date1">
+                            </div>
+                        </div>
+{#                        <div class="col-2">#}
+{#                            <label> Ngày tháng năm mất </label>#}
+{#                            <div class="input-group">#}
+{#                                <input type="date"  id="date2"#}
+{#                                   min="1900-01-01" max="2050-12-31" value="1900-01-01"#}
+{#									name="date2"> #}
+{#                            </div>#}
+{#                        </div>#}
+
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                            <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="gender">
+                                    <option disabled="disabled" selected="selected">Giới tính</option>
+                                    <option>Nam</option>
+                                    <option>Nữ</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Quốc Tịch" name="nationality" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Dân Tộc" name="nation" required>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Tôn Giáo" name="religion" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Quê quán" name="address1">
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Nơi thường trú" name="address2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                        <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Nơi ở hiện tại" name="address3" required>
+                                </div>
+                        </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Nơi sinh" name="noisinh" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                            <div class="input-group">
+                                <label for="img">Ảnh đại diện</label>
+                                <input class="input--style-1" type="file" name="avatar" onchange="readURL(this)">
+                            </div>
+                            </div>
+                            <div class="col-2">
+                                <img src="#" id="img" name="img" alt="No images have been selected.">
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                            <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="blood">
+                                    <option disabled="disabled" selected="selected">Nhóm Máu</option>
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>O</option>
+                                    <option>AB</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Số hộ chiếu" name="passport">
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Họ tên cha" name="namedad" required>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Họ tên mẹ" name="namemom" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                            <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="relationship">
+                                    <option selected>Độc Thân</option>
+                                    <option>Đã kết hôn</option>
+                                    <option>Đã ly hôn</option>
+                                    <option>Khác</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Tên vợ/chồng" name="name1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="Họ tên con" name="name2">
+                        </div>
+                        </div>
+
+
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" name="submit" type="submit">Gửi đăng kí</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
+
+<script type="text/javascript">
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

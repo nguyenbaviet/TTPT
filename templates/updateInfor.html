@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script class="jsbin" src="static/jquery-3.4.1.min.js"></script>
+
+    <!-- Title Page-->
+    <title>Thông tin công dân</title>
+
+    <!-- Icons font CSS-->
+    <link href="static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="static/css/main.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <style type="text/css">
+        .dangki {
+    float: right;
+    text-align: right;
+    font-size: 17px;
+    padding: 14px 16px;
+    color: white;
+                }
+        .dangnhap {
+  float: right;
+  text-align: right;
+  font-size: 17px;
+  padding: 14px 16px;
+  color: white;
+
+            }
+        .nav {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+}
+        .nav a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    background-color: #585858;
+    color: black;
+}
+ .nav a.tracuu {
+     margin-left: 10%;
+    float: left;
+    color: white;
+}
+.nav a.quanly {
+    margin-right: 38%;
+    float: left;
+    color: white;
+}
+.nav a.nhapthongtin {
+    float: left;
+    color: white;
+}
+        </style>
+</head>
+
+<body>
+    <div class="nav">
+            <a class="tracuu" href="{{url_for('getInfor')}}">Tra cứu </a>
+            <a class="nhapthongtin" href="{{ url_for('getPostInfor') }}">Tạo mới </a>
+            <a class="quanly" href="{{ url_for('getHistory') }}">Tiểu sử công dân </a>
+            <a href="#" style="background-color: #fc9807;float: right ">{{ session['username'] }}</a>
+            <a href="{{ url_for('logout') }}" class="dangki">Đăng xuất</a>
+    </div>
+
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Thông tin công dân</h2>
+                    <div class="input-group">
+                    <form method="post" action="{{ url_for('update',id=result['cmt']) }}" id = 'form'>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Số cmt</td>
+{#                                    <td><input class="input--style-1" type="text" value="{{ result['cmt'] }}" name="cmt" disabled></td>#}
+                                    <td>{{ result['cmt'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Họ và tên</td>
+                                    <td>{{ result['hoten'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tên thường gọi</td>
+                                    <td>
+                                        <input class="input--style-1" type="text" value="{{ result['tenthuonggoi'] }}" name="nickname" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="img">Ảnh</label>
+                                    </td>
+                                    <td><img src="{{ url_for('static', filename=result['anh'].replace('static/','')) }}" alt="" style="width: 150px;" id="img"></td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày sinh</td>
+                                    <td>{{ result['ngaysinh'] }}</td>
+                                </tr>
+
+{#                                <tr>#}
+{#                                    <td>Ngày tháng năm mất</td>#}
+{#                                    <td>{% if result['ngaymat'] != '' %}#}
+{#                                        <input type="date"  id="date2"#}
+{#                                   min="1900-01-01" max="2050-12-31" value="2000-01-01"#}
+{#									name="date2">#}
+{#                                        {% else %}#}
+{#                                        <input type="date"  id="date2"#}
+{#                                   min="1900-01-01" max="2050-12-31" value="{{result['ngaymat']}}"#}
+{#									name="date2" disabled>#}
+{#                                    {% endif %}#}
+{#                                    </td>#}
+{#                                </tr>#}
+
+                                <tr>
+                                    <td>Giới tính</td>
+                                    <td>{{ result['gioitinh'] }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Quốc tịch</td>
+                                    <td>{{ result['quoctich'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Dân tộc</td>
+                                    <td>{{ result['dantoc'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Quê quán</td>
+                                    <td>{{ result['quequan'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nơi thường trú</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Nơi ở hiện tại</td>
+                                    <td><input class="input--style-1" type="text" value="{{ result['noiohientai'] }}" name="address3" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Nhóm máu</td>
+                                    <td>{{ result['nhommau'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Số hộ chiếu</td>
+                                    <td><input class="input--style-1" type="text" value="{{ result['sohochieu'] }}" name="passport" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên cha</td>
+                                    <td>{{ result['hotencha'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên mẹ</td>
+                                    <td>{{ result['hotenme'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tình trạng hôn nhân</td>
+                                    <td><select name="relationship">
+                                    <option selected>Độc Thân</option>
+                                    <option>Đã kết hôn</option>
+                                    <option>Đã ly hôn</option>
+                                    <option>Khác</option>
+                                </select></td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên vợ/chồng</td>
+                                    <td><input class="input--style-1" type="text" value="{{ result['hotenvochong'] }}" name="name1"></td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên con</td>
+                                    <td><input class="input--style-1" type="text" value="{{ result['hotencon'] }}" name="name2"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <div class="p-t-20">
+                            <button name="submit" type="submit" style="font-weight: bold;margin-left: 700px" form="form">Cập nhập</button>
+                      </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="staic/js/global.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+<script type="text/javascript">
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

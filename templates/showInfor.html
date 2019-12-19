@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Tra cứu thông tin</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="static/css/main.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style type="text/css">
+        .dangki {
+            margin-right: 10%;
+    float: right;
+    text-align: right;
+    font-size: 17px;
+    padding: 14px 16px;
+    color: white;
+                }
+        .dangnhap {
+  float: right;
+  text-align: right;
+  font-size: 17px;
+  padding: 14px 16px;
+  color: white;
+
+            }
+        .nav {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+}
+        .nav a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    background-color: #585858;
+    color: black;
+}
+ .nav a.tracuu {
+     margin-left: 10%;
+    float: left;
+    color: white;
+}
+.nav a.quanly {
+    margin-right: 38%;
+    float: left;
+    color: white;
+}
+.nav a.nhapthongtin {
+    float: left;
+    color: white;
+}
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+            <a class="tracuu" href="{{url_for('getInfor')}}">Tra cứu </a>
+            <a class="nhapthongtin" href="{{ url_for('getPostInfor') }}">Tạo mới </a>
+            <a class="quanly" href="{{ url_for('getHistory') }}">Tiểu sử công dân </a>
+            <a href="#" style="background-color: #fc9807;float: right ">{{ session['username'] }}</a>
+            <a href="{{ url_for('logout') }}" class="dangki">Đăng xuất</a>
+
+    </div>
+{#    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">#}
+{#        <a class="navbar-brand" href="#">Quản lý định danh số</a>#}
+{#            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="   #navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">#}
+{#                <span class="navbar-toggler-icon"></span>#}
+{#            </button>#}
+{#        <div class="collapse navbar-collapse" id="navbarNavDropdown">#}
+{#            <ul class="navbar-nav mr-auto ml-5">#}
+{#                <li class="nav-item active">#}
+{#                    <a class="nav-link" href="{{url_for('getInfor')}}">Tra cứu</a>#}
+{#                </li>#}
+{#                <li class="nav-item ml-3">#}
+{#                    <a class="nav-link" href="{{ url_for('getPostInfor') }}">Tạo mới</a>#}
+{#                </li>#}
+{#                <li class="nav-item ml-3">#}
+{#                    <a class="nav-link" href="{{ url_for('getHistory') }}">Tiểu sử công dân</a>#}
+{#                </li>#}
+{#            </ul>#}
+{#            <div class="form-inline my-2 my-lg-0">#}
+{#                <li class="nav-item">#}
+{#                    <a href="#" class="btn btn-warning text-white" style="background-color: #fc9807">{{ session['username'] }}</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a href="{{ url_for('logout') }}" class="btn btn-outline-success">Đăng xuất</a>#}
+{#                </li>#}
+{#            </div>#}
+{#        </div>#}
+{#    </nav>#}
+
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Tra cứu thông tin công dân</h2>
+                    <form method="post" action="getInfor">
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <h4>Mời nhập số CMT</h4>
+                                <input type="number" name="cmt" class="" placeholder="Số CMT" id="cmt" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" name="search"class="btn-primary" style="width: 130px; height: 35px">Tra cứu</button>
+                        </div>
+                    </div>
+                    </form>
+                    <hr>
+                {% if no_cmt %}
+                    <div style="color: red">Không tồn tại số chứng minh thư này!</div>
+                {% else %}
+                    <h4><table style="border: 1px ;width:100%">
+                            <tr>
+                                <td style="width: 90%">Kết quả</td>
+                                <td><a href="{{ url_for('getUpdate',id=result['cmt']) }}">Sửa</a> </td>
+                            </tr>
+                    </table></h4>
+                    <div class="input-group">
+
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Số cmt</td>
+                                    <td>{{result['cmt']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Họ và tên</td>
+                                    <td>{{ result['hoten'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tên thường gọi</td>
+                                    <td>{{ result['tenthuonggoi'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ảnh</td>
+                                    <td><img src="{{ url_for('static', filename=result['anh'].replace('static/','')) }}" alt="" style="width: 150px;"></td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày sinh</td>
+                                    <td>{{ result['ngaysinh'] }}</td>
+                                </tr>
+                                {% if result['ngaymat'] != '' %}
+                                <tr>
+                                    <td>Ngày tháng năm mất</td>
+                                    <td>{{ result['ngaymat'] }}</td>
+                                </tr>
+                                {% endif %}
+                                <tr>
+                                    <td>Giới tính</td>
+                                    <td>{{ result['gioitinh'] }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Quốc tịch</td>
+                                    <td>{{ result['quoctich'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Dân tộc</td>
+                                    <td>{{ result['dantoc'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Quê quán</td>
+                                    <td>{{ result['quequan'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nơi thường trú</td>
+                                    <td>{{ result['noithuongtru'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nơi ở hiện tại</td>
+                                    <td>{{ result['noiohientai'] }}</td>
+                                </tr>                                
+                                <tr>
+                                    <td>Nhóm máu</td>
+                                    <td>{{ result['nhommau'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Số hộ chiếu</td>
+                                    <td>{{ result['sohochieu'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên cha</td>
+                                    <td>{{ result['hotencha'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên mẹ</td>
+                                    <td>{{ result['hotenme'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tình trạng hôn nhân</td>
+                                    <td>{{ result['tinhtranghonnhan'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên vợ/chồng</td>
+                                    <td>{{ result['hotenvochong'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Họ tên con</td>
+                                    <td>{{ result['hotencon'] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                    	
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="static/vendor/select2/select2.min.js"></script>
+    <script src="static/vendor/datepicker/moment.min.js"></script>
+    <script src="static/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="static/js/global.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
