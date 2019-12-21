@@ -156,6 +156,7 @@ def getHistory():
 
 @app.route('/test')
 def test():
-    return render_template('postInfor.html')
+
+    return render_template('updateInfor.html', test=False)
 if __name__ == '__main__':
     app.run(debug=True)
